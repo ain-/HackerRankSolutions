@@ -1,19 +1,13 @@
 def is_matched(expression):
-    open_brac_surplus = {'(': 0, '[': 0, '{': 0}
     history = []
     for c in expression:
-        if c == '(' or c == '[' or c == '{':
-            open_brac_surplus[c] += 1
+        if c in "([{":
             history.append(c)
         else:
             complement = get_complement(c)
-            if open_brac_surplus[complement] <= 0:
+            prev_open = history.pop() if len(history) > 0 else None
+            if complement != prev_open:
                 return False
-            else:
-                prev_open = history.pop() if len(history) > 0 else None
-                if complement != prev_open:
-                    return False
-                open_brac_surplus[complement] -= 1
     return len(history) == 0
 
 
