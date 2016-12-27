@@ -4,13 +4,15 @@ class MyQueue(object):
         self.stack2 = []
 
     def peek(self):
-        self.__reverse(self.stack2, self.stack1)
+        if len(self.stack1) == 0:
+            self.__reverse(self.stack2, self.stack1)
         el = self.stack1.pop()
         self.stack1.append(el)
         return el
 
     def pop(self):
-        self.__reverse(self.stack2, self.stack1)
+        if len(self.stack1) == 0:
+            self.__reverse(self.stack2, self.stack1)
         el = self.stack1.pop()
         return el
 
@@ -19,8 +21,6 @@ class MyQueue(object):
             to.append(from_.pop())
 
     def put(self, value):
-        if len(self.stack1) > 0:
-            self.__reverse(self.stack1, self.stack2)
         self.stack2.append(value)
 
 queue = MyQueue()
