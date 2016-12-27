@@ -7,13 +7,11 @@ class MyQueue(object):
         self.__reverse(self.stack2, self.stack1)
         el = self.stack1.pop()
         self.stack1.append(el)
-        self.__reverse(self.stack1, self.stack2)
         return el
 
     def pop(self):
         self.__reverse(self.stack2, self.stack1)
         el = self.stack1.pop()
-        self.__reverse(self.stack1, self.stack2)
         return el
 
     def __reverse(self, from_, to):
@@ -21,6 +19,8 @@ class MyQueue(object):
             to.append(from_.pop())
 
     def put(self, value):
+        if len(self.stack1) > 0:
+            self.__reverse(self.stack1, self.stack2)
         self.stack2.append(value)
 
 queue = MyQueue()
