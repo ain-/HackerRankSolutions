@@ -18,7 +18,9 @@ def check_binary_search_tree_(root):
 
 def check(root, parentData, isRight):
     if root.left is None and root.right is None:
-        return (root.data > parentData and isRight) or (root.data < parentData and not isRight)
+        if isRight:
+            return root.data > parentData
+        return root.data < parentData
     elif root.left is None:
         return check(root.right, root.data, True)
     elif root.right is None:
